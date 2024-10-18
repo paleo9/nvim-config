@@ -24,17 +24,12 @@ may keep their config and documentation.
 
 ## Files in this directory
 
-init.lua and Doc/init.lua.md:
+* Doc/:
+    Directory containing markdown files to accompany the lua files. Allows decluttering source files and more detailed notes with better formatting.
+
+* init.lua Doc/init.lua.md:
     The main config and documentation files for my nvim. Contains all settings except for plugin configuration. 
 
-plugin-name.lua Doc/plugin-name.lua.md:
+* plugin-name.lua Doc/plugin-name.lua.md:
     Config and documentation for a plugin.
 
-simple.lua:
-    A bare bones config file to use as ```nvim -u ~/.config/nvim/simple.lua``` for little jobs.
-
-Original/:
-    Directory containing the original files from kickstart repository.
-
-Doc/:
-    Directory containing markdown files to accompany the lua files. Allows decluttering source files and more detailed notes with better formatting.
