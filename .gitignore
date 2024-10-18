@@ -1,4 +1,5 @@
 Original/
 LICENSE.md
 .stylua.toml
-lua/kickstart/*
+lua/kickstart
+lua/custom
