@@ -6,9 +6,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- folding in markdown
-vim.g.markdown_folding = 1
-
 -- [ Displaying various things ] {{{1
 vim.opt.foldmethod = 'marker'
 vim.opt.number = true
