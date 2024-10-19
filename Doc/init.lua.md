@@ -3,17 +3,38 @@
 This file contains documentation for init.lua - the main 
 configuration file for nvim.
 
-Folds are used extensively, some useful fold commands:
-Toggle fold: za
+## A note about folding
 
-Setting options: 
-* See `:help vim.opt`
-* For more options, you can see `:help option-list`
+Folds are used extensively; here are some useful commands for folds:
+
+  | Action                    | command |
+  |---------------------------|---------|
+  | Toggle fold open / closed | za      |
+  | Jump to next fold         | zj      |
+  | Jump to previous fold     | zk      |
+  | Jump to start of fold     | [z      |
+  | Jump  to end of fold      | ]z      |
+
+lua files use 'foldmethod=marker'. The start of a fold is marked with {{{ and ends with }}}.
+These markers are placed inside comments. They may be given a number to denote nesting level:
+
+``` lua
+    -- my major section {{{1
+    -- my subsection {{{2
+    -- }}} end of subsection
+    -- }}} end of major section
+```
+
+## Setting options: 
+
+    * See `:help vim.opt`
+    * For more options, you can see `:help option-list`
 
 ## [ Leader key ]
 
-* Set <space> as the leader key
-* See `:help mapleader`
+    * Set <space> as the leader key
+    * See `:help mapleader`
+
 NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 
 ``` lua
@@ -129,7 +150,7 @@ Navigate splits with Ctrl+<hjkl>. `wincmd`
 ### Miscellaneous autocommands
 * Highlight when yanking. TextYankPost. `:help vim.highlight.on_yank()`
 
-## [[ Plugin manager ]]
+## [[ Plugins ]]
 
 ### [ Install lazy.nvim plugin manager ]
 `:help lazy.nvim.txt` or (github lazy.nvim)[https://github.com/folke/lazy.nvim]
@@ -196,6 +217,7 @@ original comments here:
   --   },
   -- },
 ```
- 
+
+-- vim: foldmethod=syntax ts=2 sts=2 sw=2 expandtab
 
 
