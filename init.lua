@@ -1,8 +1,6 @@
--- init.lua
--- This file is the main configuration for nvim.
+-- NOTE:  READ THIS IN CONJUNCTION WITH Doc/init.lua.md
 
--- [ IMPORTANT ]
--- READ THIS IN CONJUNCTION WITH Doc/init.lua.md
+-- This file is init.lua, the main configuration for nvim.
 
 -- [ Leader key ]
 vim.g.mapleader = ' '
@@ -11,7 +9,7 @@ vim.g.maplocalleader = ' '
 -- folding in markdown
 vim.g.markdown_folding = 1
 
--- [ Displaying various things ] {{{2
+-- [ Displaying various things ] {{{1
 vim.opt.foldmethod = 'marker'
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -25,55 +23,55 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
---}}}
+-- }}}
 
--- [ Fonts ] {{{2
+-- [ Fonts ] {{{1
 vim.g.have_nerd_font = false
---}}}
+-- }}}
 
--- [ Mouse ] {{{2
+-- [ Mouse ] {{{1
 vim.opt.mouse = 'a'
---}}}
+-- }}}
 
--- [ Time related things ] {{{2
+-- [ Time related things ] {{{1
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
---}}}
+-- }}}
 
--- [ Clipboard ] {{{2
+-- [ Clipboard ] {{{1
 vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
---}}}
+-- }}}
 
--- [ History ] {{{2
+-- [ History ] {{{1
 vim.opt.undofile = true
---}}}
+-- }}}
 
--- [ Searching ] {{{2
+-- [ Searching ] {{{1
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
---}}}
+-- }}}
 
--- [[ Basic Keymaps ]]
+-- [[ Basic Keymaps ]] {{{1
 
 -- [ Miscellaneous keymaps ] {{{2
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- clear highlights on search
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
---}}}
+-- }}}
 
 -- Keybinds to make split navigation easier. {{{2
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
---}}}
+-- }}}
+-- }}}
 
--- [[ Basic Autocommands ]]
+-- [[ Autocommands ]] {{{1
 --  See `:help lua-guide-autocommands`
 
--- Miscellaneous autocommands {{{2
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -82,11 +80,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
---}}}
+-- }}}
 
--- [[ Plugin manager ]]
+-- [[ Plugins ]]
 
--- [ Install lazy.nvim plugin manager ] {{{2
+-- [ Install lazy.nvim plugin manager ] {{{1
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -98,21 +96,21 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 -- }}}
 
--- [[ Configure and install plugins ]] {{{2
+-- [[ Configure and install plugins ]] {{{1
 
 require('lazy').setup({
-  -- hardtime {{{3
+  -- hardtime {{{2
   {
     'm4xshen/hardtime.nvim',
     dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
     opts = {},
   }, -- hardtime }}}
 
-  -- vim-sleuth {{{3
+  -- vim-sleuth {{{2
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   -- vim-sluth }}}
 
-  -- which-key {{{3
+  -- which-key {{{2
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
@@ -167,7 +165,7 @@ require('lazy').setup({
     },
   }, -- whih-key }}}
 
-  -- telescope {{{3
+  -- telescope {{{2
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
@@ -273,7 +271,7 @@ require('lazy').setup({
     end,
   }, -- which-key }}}
 
-  -- LSP Plugins {{{3
+  -- LSP Plugins {{{2
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
@@ -502,7 +500,7 @@ require('lazy').setup({
   },
   -- }}}
 
-  -- Autoformat {{{3
+  -- Autoformat {{{2
   {
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
@@ -547,7 +545,7 @@ require('lazy').setup({
   },
   -- }}}
 
-  -- Autocompletion {{{3
+  -- Autocompletion {{{2
   {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
@@ -665,7 +663,7 @@ require('lazy').setup({
   },
   -- }}}
 
-  -- Colorscheme {{{3
+  -- Colorscheme {{{2
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -685,11 +683,11 @@ require('lazy').setup({
   },
   -- }}}
 
-  -- Highlight todo, notes, etc in comments {{{3
+  -- Highlight todo, notes, etc in comments {{{2
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-  --}}}
+  -- }}}
 
-  -- Collection of various small independent plugins/modules {{{3
+  -- Collection of various small independent plugins/modules {{{2
   {
     'echasnovski/mini.nvim',
     config = function()
@@ -729,7 +727,7 @@ require('lazy').setup({
   },
   -- }}}
 
-  -- Treesitter: Highlight, edit, and navigate code {{{3
+  -- Treesitter: Highlight, edit, and navigate code {{{2
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
